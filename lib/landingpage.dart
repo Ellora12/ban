@@ -2,6 +2,8 @@ import 'package:farmer/Login.dart';
 import 'package:farmer/Signup.dart';
 import 'package:flutter/material.dart';
 
+import 'Dashboard.dart';
+
 void main() => runApp(MaterialApp(
       home: landingpage(),
     ));
@@ -9,93 +11,116 @@ void main() => runApp(MaterialApp(
 class landingpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage("assests/bb.jpg"), fit: BoxFit.cover),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 0),
-          child: SingleChildScrollView(
+    return Scaffold(
+        body: SingleChildScrollView(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(
-                  height: 495,
+      children: [
+        Container(
+          height: 300,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(bottomLeft: Radius.circular(90)),
+            color: new Color(0xffF5591F),
+            gradient: LinearGradient(
+              colors: [(new Color(0xff1fd655)), new Color(0xff39e75f)],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+          child: Center(
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                height: 150,
+                width: 150,
+                margin: EdgeInsets.only(top: 50),
+                child: Image.asset("assests/app_logo.png"),
+              ),
+              Container(
+                alignment: Alignment.center,
+                child: Text(
+                  "WELCOME ",
+                  style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white),
                 ),
-                Center(
-                    child: Container(
-                  height: 67,
-                  width: 320,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Signup()),
-                      );
-                    },
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                              side: BorderSide(color: Colors.black12))),
-                      overlayColor: MaterialStateProperty.resolveWith(
-                        (states) {
-                          return states.contains(MaterialState.pressed)
-                              ? Colors.greenAccent
-                              : null;
-                        },
-                      ),
-                    ),
-                    child: const Text(
-                      'SIGNUP',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-                    ),
-                  ),
-                )),
-                SizedBox(
-                  height: 30,
-                ),
-                Center(
-                    child: Container(
-                  height: 67,
-                  width: 320,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Login()),
-                      );
-                    },
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(18.0),
-                              side: BorderSide(color: Colors.black12))),
-                      overlayColor: MaterialStateProperty.resolveWith(
-                        (states) {
-                          return states.contains(MaterialState.pressed)
-                              ? Colors.greenAccent
-                              : null;
-                        },
-                      ),
-                    ),
-                    child: const Text(
-                      'LOGIN',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
-                    ),
-                  ),
-                ))
-              ],
+              )
+            ],
+          )),
+        ),
+        GestureDetector(
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Login(),
+                  ));
+            },
+            child: Container(
+              alignment: Alignment.center,
+              margin: EdgeInsets.only(left: 20, right: 20, top: 70),
+              padding: EdgeInsets.only(left: 20, right: 20),
+              height: 65,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [(new Color(0xff1fd655)), new Color(0xffF2861E)],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight),
+                borderRadius: BorderRadius.circular(50),
+                color: Colors.grey[200],
+                boxShadow: [
+                  BoxShadow(
+                      offset: Offset(0, 10),
+                      blurRadius: 50,
+                      color: Color(0xffEEEEEE)),
+                ],
+              ),
+              child: Text(
+                "LOGIN",
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
         ),
-      ),
-    );
+        GestureDetector(
+          child: InkWell(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Signup(),
+                  ));
+            },
+            child: Container(
+              alignment: Alignment.center,
+              margin: EdgeInsets.only(left: 20, right: 20, bottom: 20, top: 45),
+              padding: EdgeInsets.only(left: 20, right: 20),
+              height: 65,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                    colors: [(new Color(0xff1fd655)), new Color(0xffF2861E)],
+                    begin: Alignment.centerLeft,
+                    end: Alignment.centerRight),
+                borderRadius: BorderRadius.circular(50),
+                color: Colors.grey[200],
+                boxShadow: [
+                  BoxShadow(
+                      offset: Offset(0, 10),
+                      blurRadius: 50,
+                      color: Color(0xffEEEEEE)),
+                ],
+              ),
+              child: Text(
+                "SIGNUP",
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+        ),
+      ],
+    )));
   }
 }

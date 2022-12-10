@@ -1,309 +1,145 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(
-      home: Profile(),
-    ));
-
 class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      constraints: BoxConstraints.expand(),
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage("assests/aa.jpg"), fit: BoxFit.cover),
-      ),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: AppBar(
-          title: Text(
-            'Profile',
-            style: TextStyle(
-                fontSize: 30, fontWeight: FontWeight.bold, color: Colors.black),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: EditProfilePage(),
+    );
+  }
+}
+
+class EditProfilePage extends StatefulWidget {
+  @override
+  _EditProfilePageState createState() => _EditProfilePageState();
+}
+
+class _EditProfilePageState extends State<EditProfilePage> {
+  bool showPassword = false;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 1,
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.green,
           ),
-          centerTitle: true,
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
+          onPressed: () {},
         ),
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(30.0, 10.0, 30.0, 0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
+      ),
+      body: Container(
+        padding: EdgeInsets.only(left: 16, top: 25, right: 16),
+        child: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: ListView(
+            children: [
               Center(
-                child: CircleAvatar(
-                  radius: 100.0,
-                  backgroundImage: AssetImage("assests/unnamed.jpg"),
+                child: Text(
+                  " Profile",
+                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
                 ),
               ),
-              Divider(
-                color: Colors.grey[800],
-                height: 50.0,
+              SizedBox(
+                height: 15,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    'Username :',
-                    style: TextStyle(
-                      shadows: <Shadow>[
-                        Shadow(
-                          offset: Offset(0.0, 0.0),
-                          blurRadius: 2.0,
-                          color: Color.fromARGB(255, 0, 0, 0),
-                        ),
-                      ],
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22.0,
-                      letterSpacing: 2.0,
+              Center(
+                child: Stack(
+                  children: [
+                    Container(
+                      width: 130,
+                      height: 130,
+                      decoration: BoxDecoration(
+                          border: Border.all(
+                              width: 4,
+                              color: Theme.of(context).scaffoldBackgroundColor),
+                          boxShadow: [
+                            BoxShadow(
+                                spreadRadius: 2,
+                                blurRadius: 10,
+                                color: Colors.black.withOpacity(0.1),
+                                offset: Offset(0, 10))
+                          ],
+                          shape: BoxShape.circle,
+                          image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80",
+                              ))),
                     ),
-                  ),
-                  SizedBox(width: 10.0),
-                  Container(
-                    width: 200,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffD5E4CF),
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 4,
-                          offset: Offset(4, 8), // Shadow position
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Abrar@45',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22.0,
-                          letterSpacing: 1.5,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+                    Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              width: 4,
+                              color: Theme.of(context).scaffoldBackgroundColor,
+                            ),
+                            color: Colors.green,
+                          ),
+                          child: Icon(
+                            Icons.edit,
+                            color: Colors.white,
+                          ),
+                        )),
+                  ],
+                ),
               ),
-              Divider(
-                color: Colors.white10,
-                height: 20.0,
+              SizedBox(
+                height: 35,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    'Fullname  :',
-                    style: TextStyle(
-                      shadows: <Shadow>[
-                        Shadow(
-                          offset: Offset(0.0, 0.0),
-                          blurRadius: 2.0,
-                          color: Color.fromARGB(255, 0, 0, 0),
-                        ),
-                      ],
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22.0,
-                      letterSpacing: 2.0,
-                    ),
-                  ),
-                  SizedBox(width: 10.0),
-                  Container(
-                    width: 200,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffD5E4CF),
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 4,
-                          offset: Offset(4, 8), // Shadow position
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Sayedul Abrar',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22.0,
-                          letterSpacing: 1.5,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              Divider(
-                color: Colors.white10,
-                height: 20.0,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    'Phone No :',
-                    style: TextStyle(
-                      shadows: <Shadow>[
-                        Shadow(
-                          offset: Offset(0.0, 0.0),
-                          blurRadius: 2.0,
-                          color: Color.fromARGB(255, 0, 0, 0),
-                        ),
-                      ],
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22.0,
-                      letterSpacing: 2.0,
-                    ),
-                  ),
-                  SizedBox(width: 10.0),
-                  Container(
-                    width: 200,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffD5E4CF),
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 4,
-                          offset: Offset(4, 8), // Shadow position
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        '01556629672',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22.0,
-                          letterSpacing: 1.5,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              Divider(
-                color: Colors.white10,
-                height: 20.0,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    'Location   :',
-                    style: TextStyle(
-                      shadows: <Shadow>[
-                        Shadow(
-                          offset: Offset(0.0, 0.0),
-                          blurRadius: 2.0,
-                          color: Color.fromARGB(255, 0, 0, 0),
-                        ),
-                      ],
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22.0,
-                      letterSpacing: 2.0,
-                    ),
-                  ),
-                  SizedBox(width: 10.0),
-                  Container(
-                    width: 200,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffD5E4CF),
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 4,
-                          offset: Offset(4, 8), // Shadow position
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        'Dhaka Cant',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22.0,
-                          letterSpacing: 1.5,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              Divider(
-                color: Colors.white10,
-                height: 20.0,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Text(
-                    'Birth Date :',
-                    style: TextStyle(
-                      shadows: <Shadow>[
-                        Shadow(
-                          offset: Offset(0.0, 0.0),
-                          blurRadius: 2.0,
-                          color: Color.fromARGB(255, 0, 0, 0),
-                        ),
-                      ],
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 22.0,
-                      letterSpacing: 2.0,
-                    ),
-                  ),
-                  SizedBox(width: 10.0),
-                  Container(
-                    width: 200,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffD5E4CF),
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 4,
-                          offset: Offset(4, 8), // Shadow position
-                        ),
-                      ],
-                    ),
-                    child: Center(
-                      child: Text(
-                        '01/10/1995',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 22.0,
-                          letterSpacing: 1.5,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
+              buildTextField("Full Name", "Dor Alex", false),
+              buildTextField("E-mail", "alexd@gmail.com", false),
+              buildTextField("Password", "********", true),
+              buildTextField("Location", "TLV, Israel", false),
+              SizedBox(
+                height: 35,
               ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget buildTextField(
+      String labelText, String placeholder, bool isPasswordTextField) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 35.0),
+      child: TextField(
+        obscureText: isPasswordTextField ? showPassword : false,
+        decoration: InputDecoration(
+            suffixIcon: isPasswordTextField
+                ? IconButton(
+                    onPressed: () {
+                      setState(() {
+                        showPassword = !showPassword;
+                      });
+                    },
+                    icon: Icon(
+                      Icons.remove_red_eye,
+                      color: Colors.grey,
+                    ),
+                  )
+                : null,
+            contentPadding: EdgeInsets.only(bottom: 3),
+            labelText: labelText,
+            floatingLabelBehavior: FloatingLabelBehavior.always,
+            hintText: placeholder,
+            hintStyle: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            )),
       ),
     );
   }

@@ -1,7 +1,9 @@
 import 'package:farmer/landingpage.dart';
+import 'package:farmer/page/addcrop.dart';
 import 'package:farmer/page/fertilizer.dart';
 import 'package:farmer/page/irrigationc.dart';
 import 'package:farmer/page/irrigationh.dart';
+import 'package:farmer/page/irrselect.dart';
 import 'package:farmer/page/location.dart';
 import 'package:farmer/page/weather.dart';
 import 'package:farmer/profile.dart';
@@ -35,17 +37,16 @@ class NavigationDrawerWidget extends StatelessWidget {
               child: Column(
                 children: [
                   const SizedBox(height: 12),
-                  buildSearchField(),
                   const SizedBox(height: 24),
                   buildMenuItem(
                     text: 'Weather Forcast',
-                    icon: Icons.people,
+                    icon: Icons.cloud_circle,
                     onClicked: () => selectedItem(context, 0),
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
                     text: 'Fertilizer Recommendation',
-                    icon: Icons.favorite_border,
+                    icon: Icons.recommend,
                     onClicked: () => selectedItem(context, 1),
                   ),
                   const SizedBox(height: 16),
@@ -57,7 +58,7 @@ class NavigationDrawerWidget extends StatelessWidget {
                   const SizedBox(height: 16),
                   buildMenuItem(
                     text: 'Irrigation Control',
-                    icon: Icons.update,
+                    icon: Icons.settings_input_antenna,
                     onClicked: () => selectedItem(context, 3),
                   ),
                   const SizedBox(height: 24),
@@ -65,13 +66,13 @@ class NavigationDrawerWidget extends StatelessWidget {
                   const SizedBox(height: 24),
                   buildMenuItem(
                     text: 'Irrigation History',
-                    icon: Icons.account_tree_outlined,
+                    icon: Icons.history,
                     onClicked: () => selectedItem(context, 4),
                   ),
                   const SizedBox(height: 16),
                   buildMenuItem(
                     text: 'Logout',
-                    icon: Icons.notifications_outlined,
+                    icon: Icons.logout,
                     onClicked: () => selectedItem(context, 5),
                   ),
                 ],
@@ -117,30 +118,6 @@ class NavigationDrawerWidget extends StatelessWidget {
         ),
       );
 
-  Widget buildSearchField() {
-    final color = Colors.white;
-
-    return TextField(
-      style: TextStyle(color: color),
-      decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-        hintText: 'Search',
-        hintStyle: TextStyle(color: color),
-        prefixIcon: Icon(Icons.search, color: color),
-        filled: true,
-        fillColor: Colors.white12,
-        enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
-          borderSide: BorderSide(color: color.withOpacity(0.7)),
-        ),
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
-          borderSide: BorderSide(color: color.withOpacity(0.7)),
-        ),
-      ),
-    );
-  }
-
   Widget buildMenuItem({
     required String text,
     required IconData icon,
@@ -173,17 +150,17 @@ class NavigationDrawerWidget extends StatelessWidget {
         break;
       case 2:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => location(),
+          builder: (context) => CustomMarkerInfoWindowScreen(),
         ));
         break;
       case 3:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => irrigationc(),
+          builder: (context) => addcrop(),
         ));
         break;
       case 4:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => irrigationh(),
+          builder: (context) => irrselect(),
         ));
         break;
       case 5:
